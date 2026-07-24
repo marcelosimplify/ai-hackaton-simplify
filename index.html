@@ -68,6 +68,7 @@
     .login-submit, .primary-button { min-height: 3rem; border: 0; border-radius: 10px; padding: 0 1.1rem; color: white; font-weight: 750; background: linear-gradient(135deg, #8368f3, #6547dc); box-shadow: 0 8px 18px rgba(99, 69, 220, .25); transition: transform .2s, box-shadow .2s, background .2s; }
     .login-submit:hover, .primary-button:hover { transform: translateY(-1px); box-shadow: 0 12px 22px rgba(99, 69, 220, .32); }
     .login-feedback { min-height: 1.2rem; margin: -.15rem 0 0; color: #ff9cae; font-size: .8rem; }
+    .demo-access { margin-top: 1.1rem; padding: .85rem; border: 1px solid rgba(177,161,255,.22); border-radius: 11px; background: rgba(118,88,230,.1); }.demo-access > strong { display: block; margin-bottom: .55rem; color: #dcd4ff; font-size: .67rem; letter-spacing: .07em; text-transform: uppercase; }.demo-credentials { display: grid; gap: .45rem; }.demo-credential { display: flex; align-items: center; justify-content: space-between; gap: .5rem; width: 100%; border: 0; padding: .35rem; color: #cbd4e8; font-size: .7rem; text-align: left; background: transparent; }.demo-credential:hover { color: #fff; background: rgba(255,255,255,.06); }.demo-credential strong, .demo-credential small { display: block; }.demo-credential strong { color: #fff; font-size: .73rem; }.demo-credential small { color: #aeb9cf; font-size: .66rem; }.demo-credential code { flex: 0 0 auto; color: #a999ff; font: 700 .66rem var(--font); }
     .security-note { margin-top: 1.4rem !important; padding-top: 1.15rem; border-top: 1px solid rgba(255,255,255,.1); color: #8490a8 !important; font-size: .76rem !important; line-height: 1.5; }
 
     /* Application shell */
@@ -215,6 +216,7 @@
     .drawer-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 5.1rem; padding: 1.1rem 1.4rem; border-bottom: 1px solid var(--line); }.drawer-header h2 { margin: 0; font-size: 1.08rem; letter-spacing: -.035em; }.drawer-header p { margin: .15rem 0 0; color: var(--muted); font-size: .73rem; }
     .drawer-close { width: 2.25rem; height: 2.25rem; flex: 0 0 auto; border: 0; border-radius: 8px; color: #667188; font-size: 1.2rem; background: #f4f5f8; }.drawer-close:hover { color: var(--purple); background: var(--purple-light); }
     .drawer-body { flex: 1; overflow-y: auto; padding: 1.35rem; }.drawer-product-image { height: 235px; display: grid; place-items: center; overflow: hidden; border-radius: 14px; padding: 1.5rem; background: linear-gradient(145deg, #f7f7fb, #edf0f6); }.drawer-product-image img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 12px 10px rgba(24,36,61,.12)); }
+    .drawer-product-gallery { position: relative; }.gallery-nav { position: absolute; z-index: 1; top: 50%; width: 2.15rem; height: 2.15rem; border: 1px solid rgba(255,255,255,.72); border-radius: 50%; color: #46516a; font-size: 1.15rem; background: rgba(255,255,255,.9); box-shadow: 0 5px 12px rgba(23,34,58,.14); transform: translateY(-50%); }.gallery-nav:hover { color: var(--purple); }.gallery-nav.previous { left: .7rem; }.gallery-nav.next { right: .7rem; }.gallery-dots { position: absolute; z-index: 1; right: 0; bottom: .65rem; left: 0; display: flex; justify-content: center; gap: .32rem; }.gallery-dots i { width: .38rem; height: .38rem; border-radius: 50%; background: #c8ceda; }.gallery-dots i.active { width: 1rem; border-radius: 999px; background: var(--purple); }
     .drawer-category { display: block; margin-top: 1.25rem; color: var(--purple); font-size: .65rem; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }.drawer-product-title { margin: .42rem 0 .5rem; color: #28344b; font-size: 1.23rem; line-height: 1.25; letter-spacing: -.04em; }.drawer-rating { color: #8b95a8; font-size: .76rem; }.drawer-rating b { color: #d98a17; }
     .drawer-price-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin: 1.3rem 0; padding: 1rem 0; border-block: 1px solid var(--line); }.drawer-price-row strong { color: #263149; font-size: 1.5rem; letter-spacing: -.055em; }.drawer-price-row span { color: #8490a5; font-size: .72rem; }
     .quantity-control { display: inline-flex; align-items: center; overflow: hidden; border: 1px solid #dfe3ec; border-radius: 9px; background: #fff; }.quantity-control button { width: 2.35rem; height: 2.35rem; border: 0; color: #5a657b; font-size: 1.1rem; background: transparent; }.quantity-control button:hover { color: var(--purple); background: var(--purple-light); }.quantity-control output { min-width: 2.15rem; color: #344058; font-size: .82rem; font-weight: 800; text-align: center; }
@@ -234,6 +236,8 @@
     #client-dialog { width: min(calc(100% - 2rem), 700px); }.address-section-title { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; grid-column: 1 / -1; margin-top: .2rem; padding-top: 1rem; border-top: 1px solid var(--line); color: #38445b; font-size: .78rem; font-weight: 800; }.address-section-title small { color: #8b95a7; font-size: .68rem; font-weight: 600; }
     .cep-lookup-status { min-height: .9rem; margin: -.5rem 0 0; color: #718098; font-size: .68rem; }.cep-lookup-status.success { color: #10916f; }.cep-lookup-status.error { color: #d94a66; }
     .audit-list { padding: .2rem 1.45rem 1.1rem; }.audit-entry { display: grid; grid-template-columns: 31px 1fr auto; gap: .75rem; align-items: start; padding: 1rem 0; border-bottom: 1px solid #eef0f4; }.audit-entry:last-child { border-bottom: 0; }.audit-icon { width: 1.9rem; height: 1.9rem; display: grid; place-items: center; border-radius: 8px; color: var(--purple); font-size: .8rem; background: var(--purple-light); }.audit-icon.alert { color: #d9435f; background: var(--rose-light); }.audit-entry strong { display: block; color: #3d485f; font-size: .8rem; line-height: 1.4; }.audit-entry span { display: block; margin-top: .15rem; color: #8d96a8; font-size: .68rem; }.audit-category { align-self: center; border-radius: 999px; padding: .27rem .48rem; color: #68738a; font-size: .62rem; font-weight: 800; background: #f0f2f6; }
+    .role-badge { display: inline-flex; align-items: center; border-radius: 999px; padding: .28rem .55rem; font-size: .67rem; font-weight: 800; }.role-badge.admin { color: #6545d7; background: var(--purple-light); }.role-badge.operador { color: #0c8b6b; background: var(--mint-light); }.user-email { color: #8791a5; font-size: .72rem; }
+    #user-dialog { width: min(calc(100% - 2rem), 560px); }.user-password-help { margin: -.35rem 0 0; color: #8792a5; font-size: .68rem; }.admin-notice { margin: 0 0 1rem; padding: .8rem .95rem; border-radius: 10px; color: #6550ae; font-size: .75rem; background: var(--purple-light); }
     .form-actions { display: flex; justify-content: flex-end; gap: .65rem; margin-top: 1.35rem; }.form-actions button { min-width: 105px; }
     .swal2-popup.swal-fluxo { width: min(calc(100% - 2rem), 430px); padding: 1.8rem; border-radius: 18px; font-family: var(--font); box-shadow: 0 25px 70px rgba(11,18,34,.27); }
     .swal-fluxo .swal2-title { color: var(--ink); font-size: 1.2rem; letter-spacing: -.04em; }.swal-fluxo .swal2-html-container { margin: .55rem 0 1.4rem; color: var(--muted); font-size: .84rem; line-height: 1.5; }
@@ -273,6 +277,7 @@
           <p class="login-feedback" id="login-feedback" aria-live="polite"></p>
           <button class="login-submit" type="submit">Entrar na plataforma →</button>
         </form>
+        <div class="demo-access"><strong>Acessos para teste</strong><div class="demo-credentials"><button class="demo-credential" type="button" data-demo-login="admin@simplify.com" data-demo-password="Simplify@2026"><span><strong>Administrador</strong><small>admin@simplify.com</small></span><code>Simplify@2026</code></button><button class="demo-credential" type="button" data-demo-login="operador@simplify.com" data-demo-password="Operador@2026"><span><strong>Operador</strong><small>operador@simplify.com</small></span><code>Operador@2026</code></button></div></div>
         <p class="security-note">A senha é validada por PBKDF2 no navegador e as tentativas são limitadas temporariamente. Em uma aplicação publicada, a autenticação deve sempre ser validada por um servidor.</p>
       </div>
     </div>
@@ -286,10 +291,11 @@
         <button class="nav-button active" data-view-target="dashboard"><span class="nav-icon">▦</span>Dashboard</button>
         <button class="nav-button" data-view-target="clientes"><span class="nav-icon">♙</span>Clientes</button>
         <button class="nav-button" data-view-target="catalogo"><span class="nav-icon">◈</span>Catálogo API</button>
-        <button class="nav-button" data-view-target="auditoria"><span class="nav-icon">◷</span>Auditoria</button>
+        <button class="nav-button" data-view-target="usuarios" data-admin-only><span class="nav-icon">♧</span>Usuários</button>
+        <button class="nav-button" data-view-target="auditoria" data-admin-only><span class="nav-icon">◷</span>Auditoria</button>
       </nav>
       <div class="sidebar-bottom">
-        <div class="user-card"><span class="avatar">MS</span><div><strong>Marcelo Simplify</strong><small>Administrador</small></div></div>
+        <div class="user-card"><span class="avatar" id="current-user-avatar">MS</span><div><strong id="current-user-name">Marcelo Simplify</strong><small id="current-user-role">Administrador</small></div></div>
         <button class="logout-button" id="logout-button">↪&nbsp;&nbsp;Sair da conta</button>
       </div>
     </aside>
@@ -310,7 +316,7 @@
         </div>
         <div class="dashboard-grid">
           <article class="panel"><div class="panel-heading"><div><h2>Saúde da carteira</h2><p>Status atualizado em tempo real</p></div><button class="small-link" data-view-target="clientes">Ver clientes</button></div><div class="status-overview"><div class="status-ring-wrap"><div class="status-ring" id="status-ring"></div><span class="ring-number" id="ring-total">0</span></div><div class="status-list" id="status-summary"></div></div></article>
-          <article class="panel"><div class="panel-heading"><div><h2>Auditoria recente</h2><p>Últimas ações registradas</p></div><button class="small-link" data-view-target="auditoria">Ver tudo</button></div><div class="activity-list" id="activity-list"></div></article>
+          <article class="panel" data-admin-only><div class="panel-heading"><div><h2>Auditoria recente</h2><p>Últimas ações registradas</p></div><button class="small-link" data-view-target="auditoria">Ver tudo</button></div><div class="activity-list" id="activity-list"></div></article>
         </div>
       </section>
 
@@ -323,9 +329,14 @@
         </article>
       </section>
 
+      <section class="page-section" id="view-usuarios">
+        <div class="clients-toolbar"><div><h2>Usuários da plataforma</h2><p>Crie e gerencie acessos, perfis e credenciais locais.</p></div><button class="primary-button" id="add-user-button">＋ Novo usuário</button></div>
+        <article class="panel"><div class="panel-heading"><div><h2>Acessos cadastrados</h2><p>Somente administradores podem administrar estes usuários.</p></div></div><div class="table-wrap"><table><thead><tr><th>Usuário</th><th>Perfil</th><th>Última alteração</th><th aria-label="Ações"></th></tr></thead><tbody id="users-tbody"></tbody></table></div><div class="empty-state" id="users-empty" hidden><div><strong>Nenhum usuário cadastrado</strong><span>Crie o primeiro acesso para a plataforma.</span></div></div></article>
+      </section>
+
       <section class="page-section" id="view-auditoria">
         <div class="clients-toolbar"><div><h2>Log de auditoria</h2><p>Histórico persistente de clientes, endereços, carrinho e acesso.</p></div></div>
-        <article class="panel"><div class="filters"><select class="filter-select" id="audit-filter" aria-label="Filtrar log de auditoria"><option value="todos">Todas as ações</option><option value="Clientes">Clientes</option><option value="Endereços">Endereços</option><option value="Carrinho">Carrinho</option><option value="Acesso">Acesso</option></select></div><div class="audit-list" id="audit-list"></div><div class="empty-state" id="audit-empty" hidden><div><strong>Nenhuma ação neste filtro</strong><span>As próximas alterações serão registradas automaticamente.</span></div></div></article>
+        <article class="panel"><div class="filters"><select class="filter-select" id="audit-filter" aria-label="Filtrar log de auditoria"><option value="todos">Todas as ações</option><option value="Clientes">Clientes</option><option value="Endereços">Endereços</option><option value="Carrinho">Carrinho</option><option value="Acesso">Acesso</option><option value="Usuários">Usuários</option></select></div><div class="audit-list" id="audit-list"></div><div class="empty-state" id="audit-empty" hidden><div><strong>Nenhuma ação neste filtro</strong><span>As próximas alterações serão registradas automaticamente.</span></div></div></article>
       </section>
 
       <section class="page-section" id="view-catalogo">
@@ -366,6 +377,16 @@
     </form>
   </dialog>
 
+  <dialog id="user-dialog" aria-labelledby="user-dialog-title">
+    <div class="modal-header"><div><h2 id="user-dialog-title">Novo usuário</h2><p id="user-dialog-description">Defina as credenciais e o perfil de acesso.</p></div><button class="close-modal" type="button" data-close-dialog="user-dialog" aria-label="Fechar">×</button></div>
+    <form class="client-form" id="user-form">
+      <input type="hidden" id="platform-user-id">
+      <p class="admin-notice">Administradores acessam auditoria e gerenciam usuários. Operadores acessam a operação e o catálogo.</p>
+      <div class="form-grid"><div class="field full"><label for="platform-user-name">Nome completo</label><input id="platform-user-name" maxlength="80" required placeholder="Ex.: Joana Martins"></div><div class="field"><label for="platform-user-email">E-mail de acesso</label><input id="platform-user-email" type="email" maxlength="120" required placeholder="joana@empresa.com"></div><div class="field"><label for="platform-user-role">Perfil</label><select id="platform-user-role"><option value="operador">Operador</option><option value="admin">Administrador</option></select></div><div class="field full"><label for="platform-user-password">Senha</label><input id="platform-user-password" type="password" minlength="10" autocomplete="new-password" placeholder="Mínimo de 10 caracteres" required><p class="user-password-help" id="user-password-help">A senha será protegida com PBKDF2 antes de ser salva.</p></div></div>
+      <div class="form-actions"><button class="secondary-button" type="button" data-close-dialog="user-dialog">Cancelar</button><button class="primary-button" type="submit" id="save-user-button">Salvar usuário</button></div>
+    </form>
+  </dialog>
+
   <div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-check">✓</span><span id="toast-text"></span></div>
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -377,12 +398,13 @@
       const LEGACY_STORAGE_CLIENTS = 'fluxo.crm.clients.v1';
       const STORAGE_ACTIVITY = 'fluxo.crm.activity.v1';
       const STORAGE_CART = 'fluxo.crm.cart.v1';
+      const STORAGE_PLATFORM_USERS = 'fluxo.crm.platform-users.v1';
       const SESSION_AUTH = 'fluxo.crm.authorized';
       const SESSION_ATTEMPTS = 'fluxo.crm.login-attempts';
       const SESSION_LOCK_UNTIL = 'fluxo.crm.login-lock-until';
-      const AUTH_EMAIL = 'admin@simplify.com';
       const AUTH_SALT = 'simplify-crm-2026';
-      const AUTH_HASH = 'BKlsN9fXq+ri6uN+ExV2ddZlY6CNFqhyWak8YJhG7qA=';
+      const ADMIN_PASSWORD_HASH = 'BKlsN9fXq+ri6uN+ExV2ddZlY6CNFqhyWak8YJhG7qA=';
+      const OPERATOR_PASSWORD_HASH = 'FsU5zH6gwo3zyyyvJhOzG5abwZV9j0RLCRHffnAaY/U=';
       const STATUS = ['ativo', 'pendente', 'inadimplente'];
       const STATUS_LABELS = { ativo: 'Ativo', pendente: 'Pendente', inadimplente: 'Inadimplente' };
       const PLANS = { Essencial: 99, Pro: 249, Enterprise: 699 };
@@ -390,7 +412,8 @@
         dashboard: { title: 'Olá, Marcelo ✦', subtitle: 'Aqui está o pulso da sua operação hoje.' },
         clientes: { title: 'Relacionamentos', subtitle: 'Uma carteira organizada cria conversas melhores.' },
         catalogo: { title: 'Catálogo inteligente', subtitle: 'Produtos conectados à Fake Store API.' },
-        auditoria: { title: 'Auditoria', subtitle: 'Rastreabilidade de cada ação relevante.' }
+        auditoria: { title: 'Auditoria', subtitle: 'Rastreabilidade de cada ação relevante.' },
+        usuarios: { title: 'Usuários', subtitle: 'Perfis, permissões e credenciais de acesso.' }
       };
 
       const byId = (id) => document.getElementById(id);
@@ -438,6 +461,26 @@
           return Array.isArray(saved) ? saved.filter((activity) => activity?.text).map((activity) => ({ id: String(activity.id || toId()), text: String(activity.text), type: activity.type === 'alert' ? 'alert' : 'normal', category: String(activity.category || 'Clientes'), at: activity.at || new Date().toISOString() })) : [];
         } catch (_) { return []; }
       }
+      function normalizePlatformUser(raw) {
+        if (!raw?.id || !raw?.nome || !raw?.email || !raw?.passwordHash) return null;
+        return { id: String(raw.id), nome: String(raw.nome).slice(0, 80), email: String(raw.email).toLocaleLowerCase('pt-BR').slice(0, 120), role: raw.role === 'admin' ? 'admin' : 'operador', passwordHash: String(raw.passwordHash), updatedAt: raw.updatedAt || new Date().toISOString() };
+      }
+      function defaultPlatformUsers() {
+        const now = new Date().toISOString();
+        return [
+          { id: 'platform-admin', nome: 'Marcelo Simplify', email: 'admin@simplify.com', role: 'admin', passwordHash: ADMIN_PASSWORD_HASH, updatedAt: now },
+          { id: 'platform-operator', nome: 'Ana Operações', email: 'operador@simplify.com', role: 'operador', passwordHash: OPERATOR_PASSWORD_HASH, updatedAt: now }
+        ];
+      }
+      function loadPlatformUsers() {
+        try {
+          const saved = JSON.parse(localStorage.getItem(STORAGE_PLATFORM_USERS));
+          if (Array.isArray(saved)) { const users = saved.map(normalizePlatformUser).filter(Boolean); if (users.length) return users; }
+        } catch (_) { /* A base de acessos é recriada abaixo. */ }
+        const users = defaultPlatformUsers();
+        localStorage.setItem(STORAGE_PLATFORM_USERS, JSON.stringify(users));
+        return users;
+      }
       function normalizeCartItem(raw) {
         const price = Number(raw?.price);
         const quantity = Number(raw?.quantity);
@@ -449,7 +492,9 @@
       }
       function saveCart() { localStorage.setItem(STORAGE_CART, JSON.stringify(state.cart)); }
 
-      const state = { clients: loadClients(), clientsSeeded: hasStoredClients(), usersLoading: false, activities: loadActivities(), cart: loadCart(), currentView: 'dashboard', catalog: [], category: 'todos', catalogLoaded: false, catalogLoading: false, captchaAnswer: null, drawerMode: '', selectedProductId: null, drawerQuantity: 1, lastFocusedElement: null, lastCepLookup: '' };
+      const state = { clients: loadClients(), clientsSeeded: hasStoredClients(), usersLoading: false, platformUsers: loadPlatformUsers(), currentUser: null, activities: loadActivities(), cart: loadCart(), currentView: 'dashboard', catalog: [], category: 'todos', catalogLoaded: false, catalogLoading: false, captchaAnswer: null, drawerMode: '', selectedProductId: null, drawerQuantity: 1, lastFocusedElement: null, lastCepLookup: '', productPhotoIndex: 0 };
+
+      function savePlatformUsers() { localStorage.setItem(STORAGE_PLATFORM_USERS, JSON.stringify(state.platformUsers)); }
 
       function recordActivity(text, type = 'normal', category = 'Clientes') {
         state.activities.unshift({ id: toId(), text, type, category, at: new Date().toISOString() });
@@ -465,6 +510,25 @@
       function productMoney(value) { return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value); }
       function initials(name) { return name.split(/\s+/).filter(Boolean).slice(0, 2).map((part) => part[0]).join('').toUpperCase() || '?'; }
       function classForPlan(plan) { return plan.toLowerCase().replace(' ', '-'); }
+      function roleLabel(role) { return role === 'admin' ? 'Administrador' : 'Operador'; }
+      function isAdmin() { return state.currentUser?.role === 'admin'; }
+      function findPlatformUser(id) { return state.platformUsers.find((user) => user.id === String(id)); }
+      function findPlatformUserByEmail(email) { return state.platformUsers.find((user) => user.email === String(email).toLocaleLowerCase('pt-BR')); }
+      function updateCurrentUserInterface() {
+        const user = state.currentUser;
+        if (!user) return;
+        byId('current-user-avatar').textContent = initials(user.nome);
+        byId('current-user-name').textContent = user.nome;
+        byId('current-user-role').textContent = roleLabel(user.role);
+        document.querySelectorAll('[data-admin-only]').forEach((element) => { element.hidden = !isAdmin(); });
+        byId('page-title').textContent = `Olá, ${user.nome.split(' ')[0]} ✦`;
+      }
+      function renderUsers() {
+        if (!isAdmin()) return;
+        const tbody = byId('users-tbody');
+        tbody.innerHTML = state.platformUsers.map((user) => `<tr><td><div class="client-person"><span class="avatar">${escapeHtml(initials(user.nome))}</span><div><strong>${escapeHtml(user.nome)}</strong><small class="user-email">${escapeHtml(user.email)}</small></div></div></td><td><span class="role-badge ${user.role}">${roleLabel(user.role)}</span></td><td>${dateTime(user.updatedAt)}</td><td><div class="row-actions"><button class="action-button" type="button" data-edit-platform-user="${escapeHtml(user.id)}" title="Editar ${escapeHtml(user.nome)}" aria-label="Editar ${escapeHtml(user.nome)}">✎</button></div></td></tr>`).join('');
+        byId('users-empty').hidden = state.platformUsers.length !== 0;
+      }
       function updateClientSourceStatus(message = '') {
         const status = byId('client-source-status');
         if (message) { status.textContent = message; return; }
@@ -538,6 +602,7 @@
       }
 
       function renderAudit() {
+        if (!isAdmin()) return;
         const filter = byId('audit-filter').value;
         const entries = state.activities.filter((activity) => filter === 'todos' || activity.category === filter);
         byId('audit-list').innerHTML = entries.map((activity) => `<article class="audit-entry"><span class="audit-icon ${activity.type === 'alert' ? 'alert' : ''}">${activity.type === 'alert' ? '!' : '✓'}</span><div><strong>${escapeHtml(activity.text)}</strong><span>${dateTime(activity.at)}</span></div><span class="audit-category">${escapeHtml(activity.category)}</span></article>`).join('');
@@ -635,6 +700,10 @@
         byId('open-cart').setAttribute('aria-label', items ? `Abrir carrinho com ${items} ${items === 1 ? 'item' : 'itens'}` : 'Abrir carrinho vazio');
       }
       function findProduct(id) { return state.catalog.find((product) => String(product.id) === String(id)); }
+      function productImages(product) {
+        const additional = Array.isArray(product?.images) ? product.images : [];
+        return [...new Set([product?.image, ...additional].filter((image) => typeof image === 'string' && image.trim()))];
+      }
       function closeDrawer() {
         const backdrop = byId('drawer-backdrop');
         backdrop.classList.remove('open'); backdrop.setAttribute('aria-hidden', 'true');
@@ -646,6 +715,7 @@
         state.drawerMode = mode;
         state.selectedProductId = product ? String(product.id) : null;
         state.drawerQuantity = 1;
+        if (product) state.productPhotoIndex = 0;
         renderDrawer();
         const backdrop = byId('drawer-backdrop');
         backdrop.classList.add('open'); backdrop.setAttribute('aria-hidden', 'false');
@@ -655,10 +725,13 @@
       function renderProductDrawer() {
         const product = findProduct(state.selectedProductId);
         if (!product) { openDrawer('cart'); return; }
+        const images = productImages(product);
+        state.productPhotoIndex = Math.max(0, Math.min(state.productPhotoIndex, images.length - 1));
+        const currentImage = images[state.productPhotoIndex] || product.image;
         byId('drawer-title').textContent = 'Detalhes do produto';
         byId('drawer-subtitle').textContent = 'Escolha a quantidade e adicione ao carrinho';
         byId('drawer-body').innerHTML = `<div class="drawer-product">
-          <div class="drawer-product-image"><img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.title)}" referrerpolicy="no-referrer"></div>
+          <div class="drawer-product-gallery"><div class="drawer-product-image"><img src="${escapeHtml(currentImage)}" alt="${escapeHtml(product.title)} — foto ${state.productPhotoIndex + 1} de ${images.length}" referrerpolicy="no-referrer"></div>${images.length > 1 ? `<button class="gallery-nav previous" type="button" data-product-photo="-1" aria-label="Foto anterior">‹</button><button class="gallery-nav next" type="button" data-product-photo="1" aria-label="Próxima foto">›</button><div class="gallery-dots" aria-label="${images.length} fotos do produto">${images.map((_, index) => `<i class="${index === state.productPhotoIndex ? 'active' : ''}" aria-hidden="true"></i>`).join('')}</div>` : ''}</div>
           <span class="drawer-category">${escapeHtml(product.category)}</span>
           <h3 class="drawer-product-title">${escapeHtml(product.title)}</h3>
           <span class="drawer-rating"><b>★</b> ${Number(product.rating?.rate || 0).toFixed(1)} de 5 · ${product.rating?.count || 0} avaliações</span>
@@ -706,6 +779,54 @@
         saveCart(); if (item) recordActivity(`Item removido do carrinho: ${item.title}.`, 'normal', 'Carrinho'); renderDrawer(); showToast('Item removido do carrinho.');
       }
       function closeDialog(id) { const dialog = byId(id); if (dialog.open) dialog.close(); }
+      function openUserDialog(user = null) {
+        if (!isAdmin()) { showToast('Apenas administradores podem gerenciar usuários.'); return; }
+        byId('user-form').reset();
+        byId('platform-user-id').value = user?.id || '';
+        byId('user-dialog-title').textContent = user ? 'Editar usuário' : 'Novo usuário';
+        byId('user-dialog-description').textContent = user ? 'Atualize perfil, credenciais e permissões de acesso.' : 'Crie um novo acesso para a plataforma.';
+        byId('save-user-button').textContent = user ? 'Salvar alterações' : 'Criar usuário';
+        byId('platform-user-password').required = !user;
+        byId('user-password-help').textContent = user ? 'Deixe em branco para manter a senha atual.' : 'A senha será protegida com PBKDF2 antes de ser salva.';
+        if (user) { byId('platform-user-name').value = user.nome; byId('platform-user-email').value = user.email; byId('platform-user-role').value = user.role; }
+        byId('user-dialog').showModal();
+        window.setTimeout(() => byId('platform-user-name').focus(), 50);
+      }
+      async function savePlatformUser(event) {
+        event.preventDefault();
+        if (!isAdmin()) { showToast('Apenas administradores podem gerenciar usuários.'); return; }
+        const form = event.currentTarget;
+        if (!form.reportValidity()) return;
+        const id = byId('platform-user-id').value;
+        const nome = byId('platform-user-name').value.trim();
+        const email = byId('platform-user-email').value.trim().toLocaleLowerCase('pt-BR');
+        const role = byId('platform-user-role').value === 'admin' ? 'admin' : 'operador';
+        const password = byId('platform-user-password').value;
+        const actor = state.currentUser?.email || 'administrador';
+        if (password && password.length < 10) { showToast('A senha deve ter ao menos 10 caracteres.'); byId('platform-user-password').focus(); return; }
+        const duplicate = state.platformUsers.find((user) => user.email === email && user.id !== id);
+        if (duplicate) { showToast('Já existe um usuário com este e-mail.'); byId('platform-user-email').focus(); return; }
+        if (id) {
+          const user = findPlatformUser(id);
+          if (!user) return;
+          if (user.role === 'admin' && role !== 'admin' && state.platformUsers.filter((entry) => entry.role === 'admin').length === 1) { showToast('Mantenha ao menos um administrador na plataforma.'); return; }
+          const confirmed = await askConfirmation({ title: 'Salvar usuário?', description: `As permissões e dados de ${user.nome} serão atualizados.`, confirmText: 'Salvar alterações' });
+          if (!confirmed) return;
+          const previous = { nome: user.nome, email: user.email, role: user.role };
+          user.nome = nome; user.email = email; user.role = role; user.updatedAt = new Date().toISOString();
+          if (password) user.passwordHash = await passwordHash(password);
+          savePlatformUsers();
+          if (state.currentUser?.id === user.id) { state.currentUser = user; sessionStorage.setItem(SESSION_AUTH, user.id); updateCurrentUserInterface(); }
+          recordActivity(`Usuário ${previous.nome} atualizado por ${actor} — nome: ${previous.nome} → ${nome}; e-mail: ${previous.email} → ${email}; perfil: ${roleLabel(previous.role)} → ${roleLabel(role)}${password ? '; senha redefinida' : ''}.`, 'normal', 'Usuários');
+          closeDialog('user-dialog'); renderUsers(); showToast('Usuário atualizado com sucesso.');
+          if (!isAdmin() && ['usuarios', 'auditoria'].includes(state.currentView)) showView('dashboard');
+        } else {
+          const user = { id: toId(), nome, email, role, passwordHash: await passwordHash(password), updatedAt: new Date().toISOString() };
+          state.platformUsers.push(user); savePlatformUsers();
+          recordActivity(`Usuário ${nome} criado por ${actor} com perfil ${roleLabel(role)}.`, 'normal', 'Usuários');
+          closeDialog('user-dialog'); renderUsers(); showToast('Novo usuário criado.');
+        }
+      }
       function openClientDialog(client = null) {
         byId('client-form').reset();
         state.lastCepLookup = '';
@@ -838,13 +959,15 @@
       }
       function showView(view) {
         if (!pageMeta[view]) return;
+        if (['usuarios', 'auditoria'].includes(view) && !isAdmin()) { showToast('Este recurso está disponível apenas para administradores.'); return; }
         state.currentView = view;
         document.querySelectorAll('.page-section').forEach((section) => section.classList.toggle('active', section.id === `view-${view}`));
         document.querySelectorAll('[data-view-target]').forEach((button) => button.classList.toggle('active', button.dataset.viewTarget === view));
-        byId('page-title').textContent = pageMeta[view].title;
+        byId('page-title').textContent = view === 'dashboard' && state.currentUser ? `Olá, ${state.currentUser.nome.split(' ')[0]} ✦` : pageMeta[view].title;
         byId('page-subtitle').textContent = pageMeta[view].subtitle;
         if (view === 'catalogo') loadCatalog();
         if (view === 'auditoria') renderAudit();
+        if (view === 'usuarios') renderUsers();
       }
 
       function arrayBufferToBase64(buffer) { return btoa(String.fromCharCode(...new Uint8Array(buffer))); }
@@ -862,14 +985,27 @@
         byId('captcha-question').textContent = useAddition ? `${first} + ${second} = ?` : `${larger} − ${smaller} = ?`;
         byId('captcha-answer').value = '';
       }
-      async function passwordMatches(password) {
+      async function passwordHash(password) {
         if (!window.crypto?.subtle) return false;
         const encoder = new TextEncoder();
         const material = await crypto.subtle.importKey('raw', encoder.encode(password), 'PBKDF2', false, ['deriveBits']);
         const bits = await crypto.subtle.deriveBits({ name: 'PBKDF2', salt: encoder.encode(AUTH_SALT), iterations: 120000, hash: 'SHA-256' }, material, 256);
-        return arrayBufferToBase64(bits) === AUTH_HASH;
+        return arrayBufferToBase64(bits);
       }
-      function unlockApp() { byId('auth-screen').hidden = true; byId('app-shell').hidden = false; byId('app-shell').setAttribute('aria-hidden', 'false'); renderDashboard(); renderClients(); updateCartBadge(); hydrateClientsFromFakeStore(); }
+      async function passwordMatches(password, storedHash) { return (await passwordHash(password)) === storedHash; }
+      function unlockApp() {
+        if (!state.currentUser) return;
+        byId('auth-screen').hidden = true;
+        byId('app-shell').hidden = false;
+        byId('app-shell').setAttribute('aria-hidden', 'false');
+        updateCurrentUserInterface();
+        showView('dashboard');
+        renderDashboard();
+        renderClients();
+        updateCartBadge();
+        if (isAdmin()) renderUsers();
+        hydrateClientsFromFakeStore();
+      }
       async function login(event) {
         event.preventDefault();
         const feedback = byId('login-feedback');
@@ -882,10 +1018,20 @@
         if (!Number.isInteger(captchaAnswer) || captchaAnswer !== state.captchaAnswer) { feedback.textContent = 'Resposta de segurança incorreta. Tente o novo desafio.'; refreshCaptcha(); byId('captcha-answer').focus(); return; }
         feedback.textContent = 'Verificando credenciais…';
         const submit = event.currentTarget.querySelector('button[type="submit"]'); submit.disabled = true;
+        const account = findPlatformUserByEmail(email);
         let valid = false;
-        try { valid = email === AUTH_EMAIL && await passwordMatches(password); } catch (_) { feedback.textContent = 'Este navegador não oferece criptografia necessária para o acesso.'; }
+        try { valid = Boolean(account) && await passwordMatches(password, account.passwordHash); } catch (_) { feedback.textContent = 'Este navegador não oferece criptografia necessária para o acesso.'; }
         submit.disabled = false;
-        if (valid) { sessionStorage.removeItem(SESSION_ATTEMPTS); sessionStorage.removeItem(SESSION_LOCK_UNTIL); sessionStorage.setItem(SESSION_AUTH, 'ok'); feedback.textContent = ''; recordActivity(`Login realizado com sucesso por ${email}.`, 'normal', 'Acesso'); unlockApp(); return; }
+        if (valid) {
+          state.currentUser = account;
+          sessionStorage.removeItem(SESSION_ATTEMPTS);
+          sessionStorage.removeItem(SESSION_LOCK_UNTIL);
+          sessionStorage.setItem(SESSION_AUTH, account.id);
+          feedback.textContent = '';
+          recordActivity(`Login realizado com sucesso por ${account.email} como ${roleLabel(account.role)}.`, 'normal', 'Acesso');
+          unlockApp();
+          return;
+        }
         const attempts = Number(sessionStorage.getItem(SESSION_ATTEMPTS) || 0) + 1;
         sessionStorage.setItem(SESSION_ATTEMPTS, String(attempts));
         recordActivity(`Tentativa de login inválida para ${email}.`, 'alert', 'Acesso');
@@ -895,12 +1041,31 @@
 
       byId('login-form').addEventListener('submit', login);
       byId('captcha-refresh').addEventListener('click', () => { refreshCaptcha(); byId('captcha-answer').focus(); });
-      byId('logout-button').addEventListener('click', () => { recordActivity('Logout realizado.', 'normal', 'Acesso'); sessionStorage.removeItem(SESSION_AUTH); byId('app-shell').hidden = true; byId('auth-screen').hidden = false; byId('login-form').reset(); byId('login-feedback').textContent = ''; refreshCaptcha(); byId('login-email').focus(); });
+      document.querySelectorAll('[data-demo-login]').forEach((button) => button.addEventListener('click', () => {
+        byId('login-email').value = button.dataset.demoLogin;
+        byId('login-password').value = button.dataset.demoPassword;
+        byId('captcha-answer').focus();
+      }));
+      byId('logout-button').addEventListener('click', () => {
+        if (state.currentUser) recordActivity(`Logout realizado por ${state.currentUser.email}.`, 'normal', 'Acesso');
+        sessionStorage.removeItem(SESSION_AUTH);
+        state.currentUser = null;
+        byId('app-shell').hidden = true;
+        byId('app-shell').setAttribute('aria-hidden', 'true');
+        byId('auth-screen').hidden = false;
+        byId('login-form').reset();
+        byId('login-feedback').textContent = '';
+        refreshCaptcha();
+        byId('login-email').focus();
+      });
       document.querySelectorAll('[data-view-target]').forEach((button) => button.addEventListener('click', () => showView(button.dataset.viewTarget)));
       [byId('top-add-client'), byId('welcome-add-client'), byId('clients-add-client')].forEach((button) => button.addEventListener('click', () => openClientDialog()));
       byId('refresh-dashboard').addEventListener('click', () => { renderDashboard(); showToast('Indicadores atualizados.'); });
       document.querySelectorAll('[data-close-dialog]').forEach((button) => button.addEventListener('click', () => closeDialog(button.dataset.closeDialog)));
       byId('client-form').addEventListener('submit', saveClientFromForm);
+      byId('user-form').addEventListener('submit', savePlatformUser);
+      byId('add-user-button').addEventListener('click', () => openUserDialog());
+      byId('users-tbody').addEventListener('click', (event) => { const edit = event.target.closest('[data-edit-platform-user]'); if (edit) openUserDialog(findPlatformUser(edit.dataset.editPlatformUser)); });
       byId('client-phone').addEventListener('input', (event) => { event.target.value = maskPhone(event.target.value); });
       byId('client-cep').addEventListener('input', (event) => { event.target.value = maskCep(event.target.value); if (digitsOnly(event.target.value).length < 8) { state.lastCepLookup = ''; byId('cep-lookup-status').textContent = ''; } if (digitsOnly(event.target.value).length === 8) lookupCep(); });
       byId('client-state').addEventListener('input', (event) => { event.target.value = event.target.value.replace(/[^a-z]/gi, '').slice(0, 2).toUpperCase(); });
@@ -918,6 +1083,7 @@
       byId('drawer-backdrop').addEventListener('click', (event) => { if (event.target === byId('drawer-backdrop')) closeDrawer(); });
       byId('drawer-body').addEventListener('click', (event) => {
         const productQuantity = event.target.closest('[data-product-quantity]');
+        const productPhoto = event.target.closest('[data-product-photo]');
         const addProduct = event.target.closest('[data-add-product]');
         const showCart = event.target.closest('[data-drawer-cart]');
         const cartQuantity = event.target.closest('[data-cart-quantity]');
@@ -925,6 +1091,11 @@
         const continueShopping = event.target.closest('[data-continue-shopping]');
         const finishCart = event.target.closest('[data-cart-finish]');
         if (productQuantity) { state.drawerQuantity = Math.max(1, Math.min(99, state.drawerQuantity + Number(productQuantity.dataset.productQuantity))); renderDrawer(); }
+        if (productPhoto) {
+          const product = findProduct(state.selectedProductId);
+          const images = productImages(product);
+          if (images.length > 1) { state.productPhotoIndex = (state.productPhotoIndex + Number(productPhoto.dataset.productPhoto) + images.length) % images.length; renderDrawer(); }
+        }
         if (addProduct) addProductToCart(addProduct.dataset.addProduct);
         if (showCart) openDrawer('cart');
         if (cartQuantity) changeCartQuantity(cartQuantity.dataset.cartQuantity, Number(cartQuantity.dataset.quantityChange));
@@ -939,10 +1110,13 @@
       });
       document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && byId('drawer-backdrop').classList.contains('open')) closeDrawer(); });
       byId('client-dialog').addEventListener('cancel', (event) => { event.preventDefault(); closeDialog('client-dialog'); });
+      byId('user-dialog').addEventListener('cancel', (event) => { event.preventDefault(); closeDialog('user-dialog'); });
 
       refreshCaptcha();
       updateCartBadge();
-      if (sessionStorage.getItem(SESSION_AUTH) === 'ok') unlockApp(); else byId('login-email').focus();
+      const savedUserId = sessionStorage.getItem(SESSION_AUTH);
+      state.currentUser = savedUserId ? findPlatformUser(savedUserId) || null : null;
+      if (state.currentUser) unlockApp(); else { sessionStorage.removeItem(SESSION_AUTH); byId('login-email').focus(); }
     })();
   </script>
 </body>

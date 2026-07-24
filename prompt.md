@@ -32,11 +32,19 @@ Fazer o push em `git@github.com:marcelosimplify/ai-hackaton-simplify.git`.
 - Melhorar o catálogo para que textos e informações nunca fiquem sobrepostos às fotos dos produtos.
 - Ao clicar em um produto, exibir um modal lateral com suas informações, permitir adicioná-lo ao carrinho e calcular o valor total do carrinho considerando os itens e suas quantidades.
 - Documentar no README as credenciais de acesso de demonstração.
+- Permitir logins separados por usuário, com perfil de administrador para criar, editar e listar usuários e acessar a auditoria.
+- Exibir as credenciais de teste diretamente na tela de login, mantendo o CAPTCHA.
+- Exibir uma galeria/slide no detalhe lateral quando o produto possuir mais de uma foto.
 
 ## Credenciais de demonstração
 
 - E-mail: `admin@simplify.com`
 - Senha: `Simplify@2026`
+
+### Operador
+
+- E-mail: `operador@simplify.com`
+- Senha: `Operador@2026`
 
 ## Resultado esperado
 
