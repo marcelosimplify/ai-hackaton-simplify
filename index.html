@@ -61,6 +61,10 @@
     .field label { font-size: .79rem; font-weight: 700; color: #cbd4e8; }
     .field input, .field select { width: 100%; height: 3rem; border: 1px solid rgba(255,255,255,.16); border-radius: 10px; padding: 0 .85rem; color: #fff; background: rgba(255,255,255,.08); }
     .field input::placeholder { color: #8c97aa; }
+    .captcha-field { gap: .55rem; }.captcha-row { display: grid; grid-template-columns: 1fr 2.5rem; gap: .5rem; align-items: stretch; }
+    .captcha-question { display: flex; align-items: center; gap: .5rem; min-height: 2.7rem; padding: 0 .8rem; border: 1px solid rgba(151,132,242,.35); border-radius: 9px; color: #bfc8dc; font-size: .76rem; background: rgba(122,94,228,.1); }
+    .captcha-question strong { color: #fff; font-size: .92rem; letter-spacing: .015em; white-space: nowrap; }.captcha-refresh { border: 1px solid rgba(151,132,242,.35); border-radius: 9px; color: #cfc6ff; background: rgba(122,94,228,.1); transition: color .2s, background .2s; }.captcha-refresh:hover { color: #fff; background: rgba(122,94,228,.3); }
+    .captcha-field input { height: 2.75rem; }
     .login-submit, .primary-button { min-height: 3rem; border: 0; border-radius: 10px; padding: 0 1.1rem; color: white; font-weight: 750; background: linear-gradient(135deg, #8368f3, #6547dc); box-shadow: 0 8px 18px rgba(99, 69, 220, .25); transition: transform .2s, box-shadow .2s, background .2s; }
     .login-submit:hover, .primary-button:hover { transform: translateY(-1px); box-shadow: 0 12px 22px rgba(99, 69, 220, .32); }
     .login-feedback { min-height: 1.2rem; margin: -.15rem 0 0; color: #ff9cae; font-size: .8rem; }
@@ -245,6 +249,7 @@
         <form class="login-form" id="login-form" novalidate>
           <div class="field"><label for="login-email">E-mail</label><input id="login-email" type="email" autocomplete="username" placeholder="voce@empresa.com" required></div>
           <div class="field"><label for="login-password">Senha</label><input id="login-password" type="password" autocomplete="current-password" placeholder="Sua senha" minlength="10" required></div>
+          <div class="field captcha-field"><label for="captcha-answer">Verificação de segurança</label><div class="captcha-row"><div class="captcha-question" aria-live="polite"><span>Resolva:</span><strong id="captcha-question">—</strong></div><button class="captcha-refresh" id="captcha-refresh" type="button" title="Gerar novo desafio" aria-label="Gerar novo desafio">↻</button></div><input id="captcha-answer" type="text" inputmode="numeric" autocomplete="off" maxlength="3" placeholder="Digite o resultado" required></div>
           <p class="login-feedback" id="login-feedback" aria-live="polite"></p>
           <button class="login-submit" type="submit">Entrar na plataforma →</button>
         </form>
@@ -377,7 +382,7 @@
       function saveClients() { localStorage.setItem(STORAGE_CLIENTS, JSON.stringify(state.clients)); }
       function loadActivities() { try { const saved = JSON.parse(localStorage.getItem(STORAGE_ACTIVITY)); return Array.isArray(saved) ? saved : []; } catch (_) { return []; } }
 
-      const state = { clients: loadClients(), activities: loadActivities(), currentView: 'dashboard', catalog: [], category: 'todos', catalogLoaded: false, catalogLoading: false };
+      const state = { clients: loadClients(), activities: loadActivities(), currentView: 'dashboard', catalog: [], category: 'todos', catalogLoaded: false, catalogLoading: false, captchaAnswer: null };
 
       function recordActivity(text, type = 'normal') {
         state.activities.unshift({ id: toId(), text, type, at: new Date().toISOString() });
@@ -564,6 +569,20 @@
       }
 
       function arrayBufferToBase64(buffer) { return btoa(String.fromCharCode(...new Uint8Array(buffer))); }
+      function secureRandom(max) {
+        if (window.crypto?.getRandomValues) { const values = new Uint32Array(1); crypto.getRandomValues(values); return values[0] % max; }
+        return Math.floor(Math.random() * max);
+      }
+      function refreshCaptcha() {
+        const first = 2 + secureRandom(8);
+        const second = 1 + secureRandom(8);
+        const useAddition = secureRandom(2) === 0;
+        const larger = Math.max(first, second);
+        const smaller = Math.min(first, second);
+        state.captchaAnswer = useAddition ? first + second : larger - smaller;
+        byId('captcha-question').textContent = useAddition ? `${first} + ${second} = ?` : `${larger} − ${smaller} = ?`;
+        byId('captcha-answer').value = '';
+      }
       async function passwordMatches(password) {
         if (!window.crypto?.subtle) return false;
         const encoder = new TextEncoder();
@@ -577,9 +596,11 @@
         const feedback = byId('login-feedback');
         const email = byId('login-email').value.trim().toLocaleLowerCase('pt-BR');
         const password = byId('login-password').value;
+        const captchaAnswer = Number(byId('captcha-answer').value.trim());
         const lockedUntil = Number(sessionStorage.getItem(SESSION_LOCK_UNTIL) || 0);
         if (lockedUntil > Date.now()) { feedback.textContent = `Muitas tentativas. Aguarde ${Math.ceil((lockedUntil - Date.now()) / 1000)} segundos.`; return; }
-        if (!email || !password) { feedback.textContent = 'Informe seu e-mail e senha.'; return; }
+        if (!email || !password || !byId('captcha-answer').value.trim()) { feedback.textContent = 'Preencha e-mail, senha e a verificação de segurança.'; return; }
+        if (!Number.isInteger(captchaAnswer) || captchaAnswer !== state.captchaAnswer) { feedback.textContent = 'Resposta de segurança incorreta. Tente o novo desafio.'; refreshCaptcha(); byId('captcha-answer').focus(); return; }
         feedback.textContent = 'Verificando credenciais…';
         const submit = event.currentTarget.querySelector('button[type="submit"]'); submit.disabled = true;
         let valid = false;
@@ -588,11 +609,13 @@
         if (valid) { sessionStorage.removeItem(SESSION_ATTEMPTS); sessionStorage.removeItem(SESSION_LOCK_UNTIL); sessionStorage.setItem(SESSION_AUTH, 'ok'); feedback.textContent = ''; unlockApp(); return; }
         const attempts = Number(sessionStorage.getItem(SESSION_ATTEMPTS) || 0) + 1;
         sessionStorage.setItem(SESSION_ATTEMPTS, String(attempts));
+        refreshCaptcha();
         if (attempts >= 5) { const until = Date.now() + 30000; sessionStorage.setItem(SESSION_LOCK_UNTIL, String(until)); sessionStorage.setItem(SESSION_ATTEMPTS, '0'); feedback.textContent = 'Acesso bloqueado por 30 segundos após várias tentativas.'; } else { feedback.textContent = `Credenciais inválidas. Restam ${5 - attempts} tentativa(s).`; }
       }
 
       byId('login-form').addEventListener('submit', login);
-      byId('logout-button').addEventListener('click', () => { sessionStorage.removeItem(SESSION_AUTH); byId('app-shell').hidden = true; byId('auth-screen').hidden = false; byId('login-form').reset(); byId('login-feedback').textContent = ''; byId('login-email').focus(); });
+      byId('captcha-refresh').addEventListener('click', () => { refreshCaptcha(); byId('captcha-answer').focus(); });
+      byId('logout-button').addEventListener('click', () => { sessionStorage.removeItem(SESSION_AUTH); byId('app-shell').hidden = true; byId('auth-screen').hidden = false; byId('login-form').reset(); byId('login-feedback').textContent = ''; refreshCaptcha(); byId('login-email').focus(); });
       document.querySelectorAll('[data-view-target]').forEach((button) => button.addEventListener('click', () => showView(button.dataset.viewTarget)));
       [byId('top-add-client'), byId('welcome-add-client'), byId('clients-add-client')].forEach((button) => button.addEventListener('click', () => openClientDialog()));
       byId('refresh-dashboard').addEventListener('click', () => { renderDashboard(); showToast('Indicadores atualizados.'); });
@@ -607,6 +630,7 @@
       byId('reload-catalog').addEventListener('click', () => loadCatalog(true));
       byId('client-dialog').addEventListener('cancel', (event) => { event.preventDefault(); closeDialog('client-dialog'); });
 
+      refreshCaptcha();
       if (sessionStorage.getItem(SESSION_AUTH) === 'ok') unlockApp(); else byId('login-email').focus();
     })();
   </script>
