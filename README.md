@@ -16,7 +16,7 @@ Antes de entrar, resolva o CAPTCHA matemático exibido no formulário. O desafio
 - Dashboard interativo e gestão de clientes.
 - Cadastro, edição, atualização de status e exclusão com confirmações SweetAlert2.
 - Telefone com máscara, consulta de CEP pela ViaCEP e preenchimento assistido de endereço.
-- Dados de clientes persistidos no `localStorage` do navegador.
+- Dados de clientes persistidos no `localStorage` do navegador, com carga inicial de usuários da [Fake Store API](https://fakestoreapi.com/users).
 - Catálogo conectado à [Fake Store API](https://fakestoreapi.com/).
 - Drawer lateral de produto e carrinho persistente, com ajuste de quantidades e cálculo do total.
 - Log de auditoria persistente para ações de acesso, clientes, endereços e carrinho.
