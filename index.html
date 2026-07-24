@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#10182b">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src https://fakestoreapi.com; img-src 'self' data: https://fakestoreapi.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src https://fakestoreapi.com; img-src 'self' data: https://fakestoreapi.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net">
   <title>Fluxo — Gestão inteligente</title>
   <style>
     :root {
@@ -211,7 +211,11 @@
     .client-form { padding: 1.25rem 1.5rem 1.5rem; }.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }.form-grid .field.full { grid-column: 1 / -1; }
     .client-form .field label { color: #566178; font-size: .73rem; }.client-form .field input, .client-form .field select { height: 2.7rem; border: 1px solid #dfe3ec; border-radius: 8px; color: var(--ink); background: #fff; }.client-form .field input:focus, .client-form .field select:focus { border-color: #a997ef; }
     .form-actions { display: flex; justify-content: flex-end; gap: .65rem; margin-top: 1.35rem; }.form-actions button { min-width: 105px; }
-    .confirm-content { padding: 1.65rem; }.confirm-symbol { width: 2.65rem; height: 2.65rem; display: grid; place-items: center; margin-bottom: 1rem; border-radius: 10px; color: var(--purple); font-size: 1.1rem; background: var(--purple-light); }.confirm-symbol.danger { color: var(--rose); background: var(--rose-light); }.confirm-content h2 { margin: 0; font-size: 1.15rem; letter-spacing: -.04em; }.confirm-content p { margin: .45rem 0 1.4rem; color: var(--muted); font-size: .84rem; line-height: 1.5; }
+    .swal2-popup.swal-fluxo { width: min(calc(100% - 2rem), 430px); padding: 1.8rem; border-radius: 18px; font-family: var(--font); box-shadow: 0 25px 70px rgba(11,18,34,.27); }
+    .swal-fluxo .swal2-title { color: var(--ink); font-size: 1.2rem; letter-spacing: -.04em; }.swal-fluxo .swal2-html-container { margin: .55rem 0 1.4rem; color: var(--muted); font-size: .84rem; line-height: 1.5; }
+    .swal-fluxo .swal2-actions { width: 100%; gap: .65rem; margin: 0; }.swal-fluxo .swal2-confirm, .swal-fluxo .swal2-cancel { flex: 1; min-height: 2.7rem; margin: 0; border: 0; border-radius: 10px; padding: 0 .85rem; font: inherit; font-size: .82rem; font-weight: 750; }
+    .swal-fluxo .swal2-confirm { color: #fff; background: linear-gradient(135deg, #8368f3, #6547dc); box-shadow: 0 8px 18px rgba(99,69,220,.22); }.swal-fluxo .swal2-confirm.swal-danger { background: linear-gradient(135deg, #ee7187, #dc4662); box-shadow: 0 8px 18px rgba(220,70,98,.2); }
+    .swal-fluxo .swal2-cancel { color: #536078; border: 1px solid var(--line); background: #fff; }.swal-fluxo .swal2-icon { margin: .1rem auto .85rem; }
     .toast { position: fixed; right: 1.2rem; bottom: 1.2rem; z-index: 30; display: flex; align-items: center; gap: .6rem; max-width: min(360px, calc(100vw - 2.4rem)); padding: .85rem 1rem; border-radius: 11px; color: #fff; font-size: .8rem; font-weight: 700; background: #202b42; box-shadow: 0 12px 28px rgba(13,22,41,.25); opacity: 0; pointer-events: none; transform: translateY(12px); transition: opacity .25s, transform .25s; }.toast.show { opacity: 1; transform: translateY(0); }.toast .toast-check { color: #65efc6; }
 
     @media (max-width: 1020px) { .stats-grid { grid-template-columns: repeat(2, 1fr); }.app-shell { grid-template-columns: 215px minmax(0,1fr); } }
@@ -315,12 +319,9 @@
     </form>
   </dialog>
 
-  <dialog id="confirm-dialog" aria-labelledby="confirm-title">
-    <form method="dialog" class="confirm-content"><div class="confirm-symbol" id="confirm-symbol">?</div><h2 id="confirm-title">Confirmar ação</h2><p id="confirm-description"></p><div class="form-actions"><button class="secondary-button" value="cancel">Cancelar</button><button class="primary-button" id="confirm-accept" value="confirm">Confirmar</button></div></form>
-  </dialog>
-
   <div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-check">✓</span><span id="toast-text"></span></div>
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     (() => {
       'use strict';
@@ -449,19 +450,25 @@
         byId('client-dialog').showModal();
         window.setTimeout(() => byId('client-name').focus(), 50);
       }
-      function askConfirmation({ title, description, confirmText = 'Confirmar', danger = false }) {
-        const dialog = byId('confirm-dialog');
-        byId('confirm-title').textContent = title;
-        byId('confirm-description').textContent = description;
-        byId('confirm-accept').textContent = confirmText;
-        byId('confirm-accept').classList.toggle('danger-button', danger);
-        byId('confirm-symbol').textContent = danger ? '!' : '✓';
-        byId('confirm-symbol').classList.toggle('danger', danger);
-        return new Promise((resolve) => {
-          const onClose = () => { dialog.removeEventListener('close', onClose); resolve(dialog.returnValue === 'confirm'); };
-          dialog.addEventListener('close', onClose, { once: true });
-          dialog.showModal();
+      async function askConfirmation({ title, description, confirmText = 'Confirmar', danger = false }) {
+        if (!window.Swal) return window.confirm(`${title}\n\n${description}`);
+        const result = await Swal.fire({
+          title,
+          text: description,
+          icon: danger ? 'warning' : 'question',
+          showCancelButton: true,
+          confirmButtonText: confirmText,
+          cancelButtonText: 'Cancelar',
+          reverseButtons: true,
+          focusCancel: true,
+          buttonsStyling: false,
+          customClass: {
+            popup: 'swal-fluxo',
+            confirmButton: danger ? 'swal-danger' : '',
+            cancelButton: 'swal-cancel'
+          }
         });
+        return result.isConfirmed;
       }
       function findClient(id) { return state.clients.find((client) => client.id === id); }
       function persistAndRefresh() { saveClients(); renderClients(); renderDashboard(); }
